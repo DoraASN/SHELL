@@ -109,7 +109,8 @@ goto choice
 
 :tools
 echo -----------------------------------------------------------------------
-choice /c 123456 /m "1:退出  2:返回主菜单  1:打开休眠  2:开启卓越性能模式  3:图标缓存清空  4:浏览器加速工具"
+choice /c 1234567 /m "1:退出  2:返回主菜单  3:打开休眠  4:开启卓越性能模式  5:图标缓存清空  6:浏览器加速  7:MBR修复"
+if errorlevel 7 goto mbrfix
 if errorlevel 6 goto speedyfox
 if errorlevel 5 goto cleaniconcache
 if errorlevel 4 goto bloodmodle
@@ -136,6 +137,15 @@ echo 执行完成
 goto tools
 
 :speedyfox
-D:\DoraASN\Downloads\历史下载\实验应用\SpeedyFox_浏览器加速\Windows--SpeedyFox.exe "/Firefox:default" "/Cent Browser:Default" "/Microsoft Edge:Default" 
+D:\DoraASN\Documents\SHELL\SpeedyFox.exe "/Firefox:default" "/Cent Browser:Default" "/Microsoft Edge:Default" 
+echo 执行完成
+goto tools
+
+:mbrfix
+D:
+cd D:\DoraASN\Documents\SHELL
+echo 请确认已经将MbrFix64.exe设置为以管理员方式打开（属性中设置）
+pause
+MbrFix64 /drive 0 fixmbr
 echo 执行完成
 goto tools
