@@ -11,6 +11,9 @@ chcp 936
 
 ::总入口
 :choice
+::转到脚本所在目录
+D:
+cd D:\DoraASN\Documents\SHELL\
 echo -----------------------------------------------------------------------
 choice /c 123456 /n /m "1:退出  2:启动AVD  3:启动scrcpy  4:修改HOST文件  5:打开CMD  6:小工具"
 if errorlevel 6 goto tools
@@ -138,13 +141,11 @@ echo 执行完成
 goto tools
 
 :speedyfox
-D:\DoraASN\Documents\SHELL\SpeedyFox.exe "/Firefox:default" "/Cent Browser:Default" "/Microsoft Edge:Default" 
+SpeedyFox.exe "/Firefox:default" "/Cent Browser:Default" "/Microsoft Edge:Default" 
 echo 执行完成
 goto tools
 
 :mbrfix
-D:
-cd D:\DoraASN\Documents\SHELL
 echo 请确认已经将MbrFix64.exe设置为以管理员方式打开（属性中设置）
 pause
 MbrFix64 /drive 0 fixmbr
