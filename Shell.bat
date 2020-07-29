@@ -12,7 +12,7 @@ chcp 936
 ::总入口
 :choice
 echo -----------------------------------------------------------------------
-choice /c 123456 /m "1:退出  2:启动AVD  3:启动scrcpy  4:修改HOST文件  5:打开CMD  6:小工具"
+choice /c 123456 /n /m "1:退出  2:启动AVD  3:启动scrcpy  4:修改HOST文件  5:打开CMD  6:小工具"
 if errorlevel 6 goto tools
 if errorlevel 5 goto openCMD
 if errorlevel 4 goto editHOST
@@ -38,7 +38,7 @@ goto choice
 
 :scrcpy
 echo -----------------------------------------------------------------------
-choice /c 12345 /m "1:退出  2:返回主菜单  3:连接设备列表  4:有线连接  5:无线连接"
+choice /c 12345 /n /m "1:退出  2:返回主菜单  3:连接设备列表  4:有线连接  5:无线连接"
 if errorlevel 5 goto wireless
 if errorlevel 4 goto cable
 if errorlevel 3 goto deviceslist
@@ -67,7 +67,7 @@ goto scrcpy
 
 :editHOST
 echo -----------------------------------------------------------------------
-choice /c 123456 /m "1:退出  2:返回主菜单  3:打开HOST文件  4:更新DNS  5:打开DNS查询网页  6:打开HOST备份文件"
+choice /c 123456 /n /m "1:退出  2:返回主菜单  3:打开HOST文件  4:更新DNS  5:打开DNS查询网页  6:打开HOST备份文件"
 if errorlevel 6 goto openHOSTbak
 if errorlevel 5 goto openWebtool
 if errorlevel 4 goto updateDNS
@@ -109,7 +109,8 @@ goto choice
 
 :tools
 echo -----------------------------------------------------------------------
-choice /c 1234567 /m "1:退出  2:返回主菜单  3:打开休眠  4:开启卓越性能模式  5:图标缓存清空  6:浏览器加速  7:MBR修复"
+choice /c 12345678 /n /m "1:退出  2:返回主菜单  3:打开休眠  4:开启卓越性能模式  5:图标缓存清空  6:浏览器加速  7:MBR修复  8:网络测速（网页工具）"
+if errorlevel 8 goto speedroad
 if errorlevel 7 goto mbrfix
 if errorlevel 6 goto speedyfox
 if errorlevel 5 goto cleaniconcache
@@ -148,4 +149,9 @@ echo 请确认已经将MbrFix64.exe设置为以管理员方式打开（属性中设置）
 pause
 MbrFix64 /drive 0 fixmbr
 echo 执行完成
+goto tools
+
+:speedroad
+start https://plugin.speedtest.cn/speedroad#/
+echo 请在网页中进行操作
 goto tools
